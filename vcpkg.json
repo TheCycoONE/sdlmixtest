@@ -1,0 +1,11 @@
+{
+  "dependencies": [
+    {
+      "name": "sdl2-mixer",
+      "features": [
+        "fluidsynth"
+      ]
+    },
+    "sdl2-image"
+  ]
+}
