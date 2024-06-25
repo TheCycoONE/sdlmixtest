@@ -18,7 +18,7 @@
       "binaryDir": "${sourceDir}/build/win64",
       "generator": "Visual Studio 17 2022",
       "cacheVariables": {
-        "VCPKG_TARGET_TRIPLET": "x64-windows-static-release",
+        "VCPKG_TARGET_TRIPLET": "x64-windows-static",
         "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
       }
     }
