@@ -1,0 +1,41 @@
+---
+name: Windows
+
+on:
+  pull_request:
+
+jobs:
+  Windows:
+    strategy:
+      matrix:
+        preset: ['win-x86-rel', 'win-x64-rel']
+    runs-on: windows-2022
+    env:
+      NAME: win_x86
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Checkout selected PR
+        env:
+          GH_TOKEN: ${{github.token}}
+        if: inputs.PR
+        run: gh pr checkout --repo TheCycoONE/sdlmixtest ${{inputs.pr}}
+
+      - name: Get CMake
+        uses: lukka/get-cmake@v3.28.3
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: '94a50e8c1357d423840e22451e122f56d62b5c20'
+
+      - name: Run CMake release build
+        uses: lukka/run-cmake@v10
+        with:
+          configurePreset: ${{matrix.preset}}
+          buildPreset: ${{matrix.preset}}
+          buildPresetAdditionalArgs: "['--verbose', '--target install']"
