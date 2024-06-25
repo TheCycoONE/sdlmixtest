@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "win-x86-rel",
+      "binaryDir": "${sourceDir}/build/win-x86-rel",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "Win32",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_TARGET_TRIPLET": "x86-windows-static",
+        "ENABLE_UNIT_TESTS": "ON",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
+      }
+    },
+    {
+      "name": "win-x64-rel",
+      "binaryDir": "${sourceDir}/build/win64",
+      "generator": "Visual Studio 17 2022",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-windows-static-release",
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "win-x86-rel",
+      "configurePreset": "win-x86-rel",
+      "configuration": "RelWithDebInfo"
+    },
+    {
+      "name": "win-x64-rel",
+      "configurePreset": "win-x64-rel",
+      "configuration": "RelWithDebInfo"
+    }
+  ]
+}
